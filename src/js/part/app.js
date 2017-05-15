@@ -128,16 +128,19 @@ $(document).ready(function() {
         totalPrice: function() {
             var q = this.totalQuantity(),p=0;
             while(q--){
-                p+= cart.list[q].price; 
+                p+= cart.list[q].price*cart.list[q].quantity; 
             }
             return p;
+        },
+        addItem: function(values) {
+            cart.list.push(values);
         },
         list : [
                 {
                     id : 123,
                     title : 'Йогурт Кампина Нежный 1,2% 100г с соком Малина-земляника',
                     price : 3840,
-                    quantity : 3
+                    quantity : 1
                 },
                 {
                     id : 343,
@@ -148,7 +151,7 @@ $(document).ready(function() {
         ]
     }
 
-
+    
     var x = cart.totalPrice();
     console.log(x);
     
