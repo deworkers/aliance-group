@@ -1,13 +1,13 @@
 //переменные
-@font: 'PT Sans', sans-serif;
-@font-title: 'PT Serif', serif;
-@font-alt: 'Trebuchet MS', serif;
+@font: 'Arial', sans-serif;
 
 @color_white: #fff;
-@color_text: #4d4d4d;
-@color_link: #003777;
+@color_text: #000;
+@color_link: #ed524b;
+
 @color_blue: #003777;
-@color_grey: #eaeaea;
+@color_grey: #f1f6f2;
+@color_text-grey: #737475;
 
 * {
     box-sizing: border-box;
@@ -31,23 +31,19 @@ body {
     font-family: @font;
     margin: 0;
     padding: 0;
-    background: @color_white;
+    background: @color_grey;
     color: @color_text;
 }
 
-.box {
-    min-height: 100vh;
-    padding-bottom: 270px;
-}
 
 img {
     border: none;
 }
 
 p {
-    font-size: 18px;
-    margin: 0 0 20px 0;
-    line-height: 26px;
+    font-size: 15px;
+    margin: 0 0 10px 0;
+    line-height: 24px;
 }
 
 a {
@@ -162,4 +158,14 @@ ul li, ol li{
 
 .j-noScroll {
     overflow: hidden;
+}
+
+.img-left {
+    float: left;
+    margin: 5px 20px 10px 0px;
+}
+
+.img-right {
+    float: right;
+    margin: 5px 0px 10px 20px;
 }

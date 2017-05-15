@@ -98,33 +98,60 @@ $(document).ready(function() {
     $.datepicker.setDefaults($.datepicker.regional['ru']);
 
     
-    var preloadImages = function () {
-        for(var i = 0; i<arguments.length; i++)
-        $("<img />").attr("src", arguments[i]);
+    $('.slider-inn').owlCarousel({
+        loop:true,
+        margin:20,
+        nav:true,
+        items:4,
+        navText:['','']
+    });
+
+    $('.side-one > a').on('click', function(event) {
+
+        event.stopPropagation();
+
+        if ( $(this).parents('.side-one').hasClass('active') ) {
+            $(this).parents('.side-one').removeClass('active');
+            $(this).next().slideUp();
+        } else {
+            $('.side-one').removeClass('active').find('ul').slideUp();
+            $(this).parents('.side-one').addClass('active');
+            $(this).next().slideDown();
+        }
+
+    });
+
+    var cart = {
+        totalQuantity: function() {
+            return cart.list.length;
+        },
+        totalPrice: function() {
+            var q = this.totalQuantity(),p=0;
+            while(q--){
+                p+= cart.list[q].price; 
+            }
+            return p;
+        },
+        list : [
+                {
+                    id : 123,
+                    title : 'Йогурт Кампина Нежный 1,2% 100г с соком Малина-земляника',
+                    price : 3840,
+                    quantity : 3
+                },
+                {
+                    id : 343,
+                    title : 'Йогурт Кампина Нежный 1,2% 100г с соком Малина-земляника',
+                    price : 3400,
+                    quantity : 1
+                }
+        ]
     }
 
-    preloadImages("");
 
-    $("#order-form").validate({
-       rules:{
-            name:{
-                required: true
-            },
-            email:{
-                required: true,
-                email:  true,
-            },
-       },
+    var x = cart.totalPrice();
+    console.log(x);
+    
 
-       messages:{
-            login:{
-                required: "This field is required",
-            },
-            email:{
-                required: "This field is required",
-                email: "Wrong email adres",
-            }
-       }
-    });  
 
 });
