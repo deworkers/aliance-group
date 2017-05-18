@@ -135,26 +135,87 @@ $(document).ready(function() {
         addItem: function(values) {
             cart.list.push(values);
         },
+        removeItem: function(id) {
+            delete cart.list[id];
+        },
         list : [
-                {
-                    id : 123,
-                    title : 'Йогурт Кампина Нежный 1,2% 100г с соком Малина-земляника',
-                    price : 3840,
-                    quantity : 1
-                },
-                {
-                    id : 343,
-                    title : 'Йогурт Кампина Нежный 1,2% 100г с соком Малина-земляника',
-                    price : 3400,
-                    quantity : 1
-                }
+            
         ]
     }
 
-    
+    var cartQuantity = function() {
+        var quantity = cart.totalQuantity();
+
+        if ( quantity > 0 ) {
+            $('.head-cart span').fadeIn().text(quantity);
+        } else {
+            $('.head-cart span').fadeOut()
+        }
+    }
+
+    cartQuantity();
+
+
+
     var x = cart.totalPrice();
-    console.log(x);
     
 
+    // количество товара
+    $('.catalog-one__minus').on('click', function() {
+        n = $(this).next().val();
+        if ( n > 1 ) {
+            n--;
+            $(this).next().val(n);
+        }
+    });
+
+    $('.catalog-one__plus').on('click', function() {
+        n = $(this).prev().val();
+        n++;
+        $(this).prev().val(n);
+    });
+
+     // отправка в корзину
+    $('.catalog-one__buy').on('click', function() {
+        //копия картинки в корзину
+        block = $(this).parents('.catalog-one__row').find('.catalog-one-img');
+
+        html = block.html();
+        block.append(html); // клонируем картинку
+        block.find('img').eq(1).addClass('clone');
+        
+        position = $(".head-cart").offset()
+        
+        $(this).parents('.catalog-one__row').find('.clone').offset(position);
+
+        setTimeout(function() { // десторим через таймер
+            $('.catalog-one-img .clone').remove();
+        }, 500);
+
+        
+        // добавление в объеки корзины
+        thisParent = $(this).parents('.catalog-one__row');
+        RegEx=/\s/g;
+
+        thisId = parseInt(thisParent.find('a').data('id'));
+        thisTitle = thisParent.find('a').text();
+        thisPrice = parseInt(
+            thisParent.find('.catalog-one__price').text().replace(RegEx,"")
+        );
+
+        thisQuantity = parseInt(thisParent.find('.catalog-one__quantity').val());
+
+        cart.addItem({
+            id : thisId,
+            title : thisTitle,
+            price : thisPrice,
+            quantity : thisQuantity
+        });
+
+        cartQuantity();
+
+        console.log(cart.list);
+
+    });
 
 });
