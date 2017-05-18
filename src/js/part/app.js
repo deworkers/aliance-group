@@ -218,4 +218,22 @@ $(document).ready(function() {
 
     });
 
+    $('.card-slider-main').owlCarousel({
+        loop:true,
+        margin:0,
+        nav:true,
+        items:1,
+        navText:['',''],
+        URLhashListener:true,
+    });
+
+    $('.card-slider-nav').owlCarousel({
+        loop:false,
+        margin:20,
+        nav:true,
+        items:3,
+        navText:['',''],
+        URLhashListener:true,
+    });
+
 });
