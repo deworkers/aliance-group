@@ -7,8 +7,9 @@
 
 //= ../plugin/owl.carousel/owl.carousel.min.js
 //= ../plugin/jquery.validate.min.js
-
+//= ../plugin/magnific-popup/jquery.magnific-popup.min.js
 /*
  * Custom
  */
 //= part/app.js
+//= part/cart.js

@@ -121,107 +121,12 @@ $(document).ready(function() {
 
     });
 
-    var cart = {
-        totalQuantity: function() {
-            return cart.list.length;
-        },
-        totalPrice: function() {
-            var q = this.totalQuantity(),p=0;
-            while(q--){
-                p+= cart.list[q].price*cart.list[q].quantity; 
-            }
-            return p;
-        },
-        addItem: function(values) {
-            cart.list.push(values);
-        },
-        removeItem: function(id) {
-            delete cart.list[id];
-        },
-        list : [
-            
-        ]
-    }
-
-    var cartQuantity = function() {
-        var quantity = cart.totalQuantity();
-
-        if ( quantity > 0 ) {
-            $('.head-cart span').fadeIn().text(quantity);
-        } else {
-            $('.head-cart span').fadeOut()
-        }
-    }
-
-    cartQuantity();
-
-
-
-    var x = cart.totalPrice();
-    
-
-    // количество товара
-    $('.catalog-one__minus').on('click', function() {
-        n = $(this).next().val();
-        if ( n > 1 ) {
-            n--;
-            $(this).next().val(n);
-        }
-    });
-
-    $('.catalog-one__plus').on('click', function() {
-        n = $(this).prev().val();
-        n++;
-        $(this).prev().val(n);
-    });
-
-     // отправка в корзину
-    $('.catalog-one__buy').on('click', function() {
-        //копия картинки в корзину
-        block = $(this).parents('.catalog-one__row').find('.catalog-one-img');
-
-        html = block.html();
-        block.append(html); // клонируем картинку
-        block.find('img').eq(1).addClass('clone');
-        
-        position = $(".head-cart").offset()
-        
-        $(this).parents('.catalog-one__row').find('.clone').offset(position);
-
-        setTimeout(function() { // десторим через таймер
-            $('.catalog-one-img .clone').remove();
-        }, 500);
-
-        
-        // добавление в объеки корзины
-        thisParent = $(this).parents('.catalog-one__row');
-        RegEx=/\s/g;
-
-        thisId = parseInt(thisParent.find('a').data('id'));
-        thisTitle = thisParent.find('a').text();
-        thisPrice = parseInt(
-            thisParent.find('.catalog-one__price').text().replace(RegEx,"")
-        );
-
-        thisQuantity = parseInt(thisParent.find('.catalog-one__quantity').val());
-
-        cart.addItem({
-            id : thisId,
-            title : thisTitle,
-            price : thisPrice,
-            quantity : thisQuantity
-        });
-
-        cartQuantity();
-
-        console.log(cart.list);
-
-    });
-
     $('.card-slider-main').owlCarousel({
-        loop:true,
+        loop:false,
         margin:0,
-        nav:true,
+        nav:false,
+        touchDrag: false,
+        mouseDrag: false,
         items:1,
         navText:['',''],
         URLhashListener:true,
@@ -229,11 +134,41 @@ $(document).ready(function() {
 
     $('.card-slider-nav').owlCarousel({
         loop:false,
-        margin:20,
+        margin:3,
         nav:true,
         items:3,
         navText:['',''],
         URLhashListener:true,
+    });
+
+    $('.card-slider-nav__one').on('click', function() {
+        $('.card-slider-nav__one').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('.card-slider-main').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        closeOnContentClick: false,
+        closeBtnInside: false,
+        mainClass: 'mfp-with-zoom mfp-img-mobile',
+        image: {
+            verticalFit: true,
+            titleSrc: function(item) {
+                return item.el.attr('title');
+            }
+        },
+        gallery: {
+            enabled: true
+        },
+        zoom: {
+            enabled: true,
+            duration: 300, // don't foget to change the duration also in CSS
+            opener: function(element) {
+                return element.find('img');
+            }
+        }
+        
     });
 
 });

@@ -1,24 +1,24 @@
 <div class="card-top">
     <div class="card-slider">
         <div class="card-slider-main">
-            <a data-hash="slide1" href="#">
+            <a data-hash="slide1" title="Заголовок фотографии" href="/tmp/card-img.jpg">
                 <img src="/tmp/card-img.jpg" alt="">
             </a>
-            <a data-hash="slide2" href="#">
+            <a data-hash="slide2" title="Заголовок фотографии" href="/tmp/card-img.jpg">
                 <img src="/tmp/card-img.jpg" alt="">
             </a>
-            <a data-hash="slide3" href="#">
+            <a data-hash="slide3" title="Заголовок фотографии" href="/tmp/card-img.jpg">
                 <img src="/tmp/card-img.jpg" alt="">
             </a>
         </div>
         <div class="card-slider-nav">
-            <a href="#slide1">
+            <a class="card-slider-nav__one" href="#slide1">
                 <img src="/tmp/card-img.jpg" alt="">
             </a>
-            <a href="#slide2">
+            <a class="card-slider-nav__one" href="#slide2">
                 <img src="/tmp/card-img.jpg" alt="">
             </a>
-            <a href="#slide3">
+            <a class="card-slider-nav__one" href="#slide3">
                 <img src="/tmp/card-img.jpg" alt="">
             </a>
         </div>
@@ -27,6 +27,11 @@
         <div class="card-descr__price">
             300 <span>руб./упак</span>
         </div>
+        <div class="card-quantity">
+            <button class="catalog-one__minus card__minus"></button>
+            <input class="catalog-one__quantity card-quantity__input" type="text" value="1">
+            <button class="catalog-one__plus card__plus"></button>
+        </div>
         <div class="card-descr__options">
             <p>В упаковке: 10 шт.</p>
             <p>Возраст: 8 месяцев</p>
@@ -34,6 +39,6 @@
             <p>Страна производитель: Россия</p>
             <p>Торговая марка: ФрутоНяня</p>
         </div>
-        <button class="">Заказать</button>
+        <button class="card-order">Заказать</button>
     </div>
 </div>
