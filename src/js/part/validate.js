@@ -2,10 +2,10 @@ $(document).ready(function() {
     
     $('#order').validate({ 
         rules:{
-            email:{
-                name: true,
-            },
             phone:{
+                required: true,
+            },
+            name : {
                 required: true,
             },
             inn:{
@@ -14,19 +14,19 @@ $(document).ready(function() {
             kpp: {
                 required: true,
             },
-            company: {
+            companyname: {
                 required: true,
             },
             adres: {
                 required: true,
             }
-       },
+        },
 
-       messages:{
-            email:{
+        messages:{
+            phone:{
                 required: "Обязательное поле",
             },
-            phone:{
+            name:{
                 required: "Обязательное поле",
             },
             inn:{
@@ -35,13 +35,12 @@ $(document).ready(function() {
             kpp:{
                 required: "Обязательное поле",
             },
-            company:{
+            companyname:{
                 required: "Обязательное поле",
             },
             adres:{
                 required: "Обязательное поле",
             }
-
        }
     });
 
@@ -49,10 +48,10 @@ $(document).ready(function() {
     $('#login-form').validate({ 
         rules:{
             email:{
-                name: true,
+                required: true,
             },
             pass:{
-                name: true,
+                required: true,
             }
        },
 
@@ -66,6 +65,25 @@ $(document).ready(function() {
        }
     });
 
+    $('#message').validate({ 
+        rules:{
+            name:{
+                required: true,
+            },
+            phone:{
+                required: true,
+            }
+       },
+
+       messages:{
+            name:{
+                required: "Обязательное поле",
+            },
+            phone:{
+                required: "Обязательное поле",
+            }
+       }
+    });
     
 
 });

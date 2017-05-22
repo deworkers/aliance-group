@@ -42,7 +42,7 @@ img {
 
 p {
     font-size: 15px;
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
     line-height: 24px;
 }
 
@@ -82,11 +82,11 @@ h3 {
 }
 
 h4 {
-    .head(16px, 15px, normal, @color_text);
+    .head(16px, 10px, normal, @color_text);
 }
 
 h5 {
-    .head(13px, 15px, normal, @color_text);
+    .head(13px, 10px, normal, @color_text);
     font-weight: 700;
 }
 
@@ -169,4 +169,104 @@ ul li, ol li{
 .img-right {
     float: right;
     margin: 5px 0px 10px 20px;
+}
+
+
+table{
+    border-collapse:collapse;
+    font-size: 13px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 30px;
+    tr {
+
+        td, th {
+            text-align: left;
+            background: #fff;
+            border-bottom: 1px solid #d3d9df;
+            border-right: 1px solid #d3d9df;
+            padding: 10px 20px; 
+            &:last-child {
+                border-right: none;
+            }   
+        }
+        &:last-child {
+            td {
+                border-bottom: none;
+            }
+        }
+        th {
+            font-size: 14px;            
+        }
+    }
+    .table-subtitle {
+        td {
+            background: #e3eaf0;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.table--head {
+    width: 100%;
+    margin-bottom: 30px;
+    tr {
+        td {
+            background: #fff;
+        }
+        td, th {
+            text-align: left;
+            border-bottom: 1px solid #d3d9df;
+            border-right: 1px solid #d3d9df;
+            padding: 10px 20px; 
+            &:last-child {
+                border-right: none;
+            }   
+        }
+        th {
+            background: @color_link;
+            color: #fff;
+            border: none;
+            font-size: 14px;
+        }
+        &:last-child {
+            td {
+                border-bottom: none;
+            }
+        }
+    }
+    .table-subtitle {
+        td {
+            background: #e3eaf0;
+            text-transform: uppercase;
+        }
+    }
+}
+
+
+ul, ol{
+    margin:10px 0 10px 0px; 
+    padding: 0 0 0 20px;
+}
+ul li, ol li{
+    font-size: 15px;
+    margin-bottom:20px;
+}
+
+blockquote {
+    background: #fff;
+    padding: 20px 20px 20px 40px;
+    font-size: 18px;
+    position: relative;
+    margin: 20px 0;
+    &:after {
+        content: "“";
+        font-size: 60px;
+        color: @color_link;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
 }
