@@ -69,8 +69,6 @@ $(document).ready(function() {
 
     // отправка в корзину
     $('.catalog-one__buy').on('click', function() {
-        //копия картинки в корзину
-        moveImage();
         
         // добавление в объект корзины
         thisParent = $(this).parents('.catalog-one__row');
@@ -80,6 +78,18 @@ $(document).ready(function() {
         thisTitle = thisParent.find('a').text();
         thisPrice = parseInt(thisParent.find('.catalog-one__price').text().replace(RegEx,""));
         thisQuantity = parseInt(thisParent.find('.catalog-one__quantity').val());
+            block = $(this).parents('.catalog-one__row').find('.catalog-one-img');
+
+            html = block.html();
+            block.append(html); // клонируем картинку
+            block.find('img').eq(1).addClass('clone');
+            
+            position = $(".head-cart").offset()
+            
+            $(this).parents('.catalog-one__row').find('.clone').offset(position);
+            setTimeout(function() { // десторим через таймер
+                block.html(html);
+            }, 500);
 
         $.ajax({
             type: 'POST',
@@ -91,6 +101,7 @@ $(document).ready(function() {
             success: function() {
                 getItem();
                 cartQuantity();
+                //копия картинки в корзину
             }
         });
 
@@ -137,7 +148,6 @@ $(document).ready(function() {
                 parent.remove();
                 recount();
                 cartQuantity();
-                console.log(cart.list);
 
                 if ( $('.catalog-one__row').length == 0 ) {
                     $('.cart-list').hide();
@@ -160,22 +170,6 @@ $(document).ready(function() {
             price : thisPrice,
             quantity : thisQuantity
         });
-    }
-
-    var moveImage = function() { // перемещение картинки визуальнае
-        block = $(this).parents('.catalog-one__row').find('.catalog-one-img');
-
-        html = block.html();
-        block.append(html); // клонируем картинку
-        block.find('img').eq(1).addClass('clone');
-        
-        position = $(".head-cart").offset()
-        
-        $(this).parents('.catalog-one__row').find('.clone').offset(position);
-
-        setTimeout(function() { // десторим через таймер
-            $('.catalog-one-img .clone').remove();
-        }, 500);
     }
 
     var cartQuantity = function() { // отрисовка состояния корзины
