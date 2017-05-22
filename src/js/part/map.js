@@ -10,7 +10,7 @@ ymaps.ready(function () {
         myPlacemark = new ymaps.Placemark([
             56.83171856787374,60.6625664999999
         ], {
-            iconCaption: 'ул. Рылеева, 41'
+            iconCaption: 'Комсомольская, 72а<br>4 офис; 2 этаж'
         }, {
             preset: 'islands#blueCircleDotIconWithCaption',
             iconCaptionMaxWidth: '240'
