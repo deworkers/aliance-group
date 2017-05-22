@@ -41,6 +41,11 @@ $(document).ready(function() {
             adres:{
                 required: "Обязательное поле",
             }
+       },
+       submitHandler: function() {
+            // отправка
+            $('.cart-list, .cart-form').hide();
+            $('.order-ok').show();
        }
     });
 
