@@ -1,8 +1,80 @@
-Оформление заказа
+<div class="cart-form">
+    <form action="" id="order">
+        <div class="cart-form__title">Оформление заказа</div>
+            <div class="cart-form-block">
+                <div class="cart-form-block__title"><span>01</span> Данные заказчика</div>
+                <div class="form-line">
+                    <div class="form-col">
+                        <input type="text" name="company" placeholder="Название организации">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="name" placeholder="ФИО*">
+                    </div>
+                </div>
+                <div class="form-line">
+                    <div class="form-col">
+                        <input type="text" name="mail" placeholder="E-mail">
+                    </div>
+                    <div class="form-col">
+                        <input type="text" name="phone" placeholder="Телефон*">
+                    </div>
+                </div>
+                <div class="form-line">
+                    <textarea name="comment" placeholder="Комментарий к заказу"></textarea>
+                </div>
+            </div>
 
-01 Данные заказчика
+            <div class="cart-form-block">
+                <div class="cart-form-block__title"><span>02</span> Выбор способа доставки</div>
+                <div class="form-line">
+                    <input id="radio1" type="radio" name="deliver">
+                    <label for="radio1">Транспортной компанией</label>
+                </div>
+                <div class="form-line">
+                    <input id="radio2" type="radio" name="deliver">
+                    <label for="radio2">Самовывоз</label>
+                </div>
+            </div>
 
-02 Выбор способа доставки
+            <div class="cart-form-block">
+                <div class="cart-form-block__title"><span>03</span>  Выбор варианта оплаты</div>
+                <div class="form-line">
+                    <input id="radio3" type="radio" name="payment" value="0">
+                    <label for="radio3">Наличными</label>
+                </div>
+                <div class="form-line">
+                    <input id="radio4" type="radio" name="payment" value="1">
+                    <label for="radio4">По счету</label>
+                </div>
 
-03 Выбор варианта оплаты
+                <div class="hidden-form">
+                    <div class="form-line">
+                        <div class="form-col">
+                            <input type="text" name="company" placeholder="Название организации*">
+                        </div>
+                        <div class="form-col">
+                            <div class="form-line">
+                                <div class="form-col">
+                                    <input type="text" name="inn" placeholder="ИНН*">
+                                </div>
+                                <div class="form-col">
+                                    <input type="text" name="kpp" placeholder="КПП*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-line">
+                        <input type="text" name="adres" placeholder="Адрес*">
+                    </div>
+                </div>
 
+                <div class="form-line">
+                    <button>оформить заказ</button>
+                </div>
+
+
+            </div>
+
+
+    </form>
+</div>

@@ -13,3 +13,4 @@
  */
 //= part/app.js
 //= part/cart.js
+//= part/validate.js

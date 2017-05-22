@@ -18,6 +18,7 @@ var gulp = require('gulp'),
 var path = {
     build: { //Тут мы укажем куда складывать готовые после сборки файлы
         html:   'build/',
+        ajax:    'build/ajax/',
         js:     'build/js/',
         css:    'build/css/',
         img:    'build/img/',
@@ -27,6 +28,7 @@ var path = {
     },
     src: { //Пути откуда брать исходники
         html:   'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
+        ajax:     'src/ajax/*.php',
         js:     'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
         style:  'src/style/**/*.less',
         img:    'src/img/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
@@ -36,6 +38,7 @@ var path = {
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         html:   'src/**/*.html',
+        ajax:   'src/ajax/*.php',
         js:     'src/js/**/*.js',
         style:  'src/style/**/*.less',
         img:    'src/img/**/*.*',
@@ -68,7 +71,7 @@ gulp.task('html:build', function () {
 gulp.task('js:build', function () {
     gulp.src(path.src.js) //Найдем наш main файл
         .pipe(rigger()) //Прогоним через rigger
-        .pipe(uglify()) //Сожмем наш js
+        //.pipe(uglify()) //Сожмем наш js
         .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
@@ -116,6 +119,11 @@ gulp.task('plugin:build', function() {
         .pipe(gulp.dest(path.build.plugin))
 });
 
+gulp.task('ajax:build', function() {
+    gulp.src(path.src.ajax)
+        .pipe(gulp.dest(path.build.ajax))
+});
+
 gulp.task('sprite:build', function() {
     var spriteData = 
         gulp.src('src/img/sprite/*.*') // путь, откуда берем картинки для спрайта
@@ -133,6 +141,7 @@ gulp.task('sprite:build', function() {
 
 gulp.task('build', [
     'html:build',
+    'ajax:build',
     'js:build',
     'style:build',
     'fonts:build',
@@ -144,8 +153,11 @@ gulp.task('build', [
 
 
 gulp.task('watch', function(){
-   watch([path.watch.html], function(event, cb) {
+    watch([path.watch.html], function(event, cb) {
         gulp.start('html:build');
+    });
+    watch([path.watch.ajax], function(event, cb) {
+        gulp.start('ajax:build');
     });
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');

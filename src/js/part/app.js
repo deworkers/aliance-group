@@ -171,4 +171,13 @@ $(document).ready(function() {
         
     });
 
+
+    $('input[name="payment"]').on('change', function() {
+        if ( $(this).val() == 1 ) {
+            $('.hidden-form').slideDown();
+        } else {
+            $('.hidden-form').slideUp();
+        }
+    })
+
 });
