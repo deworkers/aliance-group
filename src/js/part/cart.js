@@ -78,18 +78,21 @@ $(document).ready(function() {
         thisTitle = thisParent.find('a').text();
         thisPrice = parseInt(thisParent.find('.catalog-one__price').text().replace(RegEx,""));
         thisQuantity = parseInt(thisParent.find('.catalog-one__quantity').val());
-            block = $(this).parents('.catalog-one__row').find('.catalog-one-img');
+        
+        block = $(this).parents('.catalog-one__row').find('.catalog-one-img');
 
-            html = block.html();
-            block.append(html); // клонируем картинку
-            block.find('img').eq(1).addClass('clone');
+        html = block.html();
+        block.append(html); // клонируем картинку
+        block.find('img').eq(1).addClass('clone');
             
-            position = $(".head-cart").offset()
-            
-            $(this).parents('.catalog-one__row').find('.clone').offset(position);
-            setTimeout(function() { // десторим через таймер
+        position = $(".head-cart").offset();
+
+        $(this).parents('.catalog-one__row').find('.clone').offset(position);
+       $('.catalog-one__buy').attr('disabled','disabled');
+        setTimeout(function() { // десторим через таймер
                 block.html(html);
-            }, 500);
+                $('.catalog-one__buy').attr('disabled', false);
+        }, 500);
 
         $.ajax({
             type: 'POST',

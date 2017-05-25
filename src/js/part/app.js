@@ -180,4 +180,8 @@ $(document).ready(function() {
         }
     })
 
+    if ( $('.card-slider-nav__one').length <= 3 ) {
+        $('.card-slider-nav .owl-nav').hide();
+    }
+
 });
